@@ -1,0 +1,50 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - bricks/**
+    - "**/*.g.dart"
+
+  errors:
+    always_specify_types: warning
+    always_use_package_imports: warning
+    annotate_overrides: warning
+    avoid_print: warning
+    camel_case_extensions: warning
+    camel_case_types: warning
+    constant_identifier_names: warning
+    directives_ordering: warning
+    empty_catches: warning
+    lines_longer_than_80_chars: warning
+    parameter_assignments: warning
+    prefer_is_empty: warning
+    prefer_is_not_empty: warning
+    prefer_single_quotes: warning
+    prefer_function_declarations_over_variables: warning
+    require_trailing_commas: warning
+    sort_child_properties_last: warning
+    unnecessary_final: warning
+    unnecessary_underscores: warning
+
+linter:
+  rules:
+    - always_specify_types
+    - always_use_package_imports
+    - annotate_overrides
+    - avoid_multiple_declarations_per_line
+    - avoid_print
+    - camel_case_extensions
+    - camel_case_types
+    - constant_identifier_names
+    - directives_ordering
+    - empty_catches
+    - lines_longer_than_80_chars
+    - parameter_assignments
+    - prefer_function_declarations_over_variables
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - prefer_single_quotes
+    - require_trailing_commas
+    - sort_child_properties_last
+    - unnecessary_final
+    - unnecessary_underscores
