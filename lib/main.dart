@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spa_app/screens/spa_screen.dart';
 
-void main() => runApp(const SpaApp());
+void main() => runApp(const ProviderScope(child: SpaApp()));
 
 class SpaApp extends StatelessWidget {
   const SpaApp({super.key});

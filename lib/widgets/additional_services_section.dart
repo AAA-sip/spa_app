@@ -1,41 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:spa_app/providers/price_provider.dart';
 
-class AdditionalServicesSection extends StatelessWidget {
+class AdditionalServicesSection extends ConsumerWidget {
   const AdditionalServicesSection({super.key});
 
   @override
-  Widget build(_) => Column(
-    spacing: 16,
+  Widget build(BuildContext context, WidgetRef ref) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: const Text(
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: Text(
           'Дополнительные услуги',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
+      const SizedBox(height: 16),
       SizedBox(
         height: 369,
         child: ListView.separated(
           itemCount: 4,
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          separatorBuilder: (_, _) => SizedBox(width: 16),
+          separatorBuilder: (_, _) => const SizedBox(width: 16),
           physics: const BouncingScrollPhysics(),
           itemBuilder: (_, int index) {
             if (index == 0 || index == 3) {
-              return SizedBox();
+              return const SizedBox();
             }
-            return _buildServiceCard();
+            return _buildServiceCard(ref);
           },
         ),
       ),
     ],
   );
 
-  Widget _buildServiceCard() {
+  Widget _buildServiceCard(WidgetRef ref) {
     return Material(
       color: Colors.grey.shade50,
       borderRadius: BorderRadius.circular(16),
@@ -58,7 +60,7 @@ class AdditionalServicesSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -77,13 +79,13 @@ class AdditionalServicesSection extends StatelessWidget {
                     ),
                     SizedBox(height: 12),
                     Row(
-                      spacing: 8,
                       children: <Widget>[
                         SvgPicture.asset(
                           'assets/icons/alarm.svg',
                           width: 16,
                           height: 16,
                         ),
+                        SizedBox(width: 8),
                         Text('2 часа', style: TextStyle(fontSize: 12)),
                       ],
                     ),
@@ -92,12 +94,11 @@ class AdditionalServicesSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Row(
-                      spacing: 4,
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -117,15 +118,17 @@ class AdditionalServicesSection extends StatelessWidget {
                     ),
                     OutlinedButton.icon(
                       style: OutlinedButton.styleFrom(
-                        side: BorderSide(color: Colors.orange),
+                        side: const BorderSide(color: Colors.orange),
                         foregroundColor: Colors.orange,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
                       ),
-                      icon: Icon(Icons.add, color: Colors.orange),
-                      label: Text('Добавить'),
-                      onPressed: () {},
+                      icon: const Icon(Icons.add, color: Colors.orange),
+                      label: const Text('Добавить'),
+                      onPressed: () {
+                        ref.read(priceProvider.notifier).add(5000);
+                      },
                     ),
                   ],
                 ),
