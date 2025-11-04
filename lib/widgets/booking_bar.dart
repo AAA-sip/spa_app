@@ -4,21 +4,36 @@ class BookingBar extends StatelessWidget {
   const BookingBar({super.key});
 
   @override
-  Widget build(_) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     decoration: BoxDecoration(color: Colors.white),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        const Text(
-          '28 000 ',
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          spacing: 4,
+          children: <Widget>[
+            const Text(
+              '28 000 ',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+            Image.asset('assets/icons/gold.png', width: 20, height: 20),
+          ],
         ),
         SizedBox(
           height: 48,
           width: 233,
           child: FilledButton(
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Бронирован!'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            },
             style: FilledButton.styleFrom(
               backgroundColor: Colors.amber,
               textStyle: const TextStyle(

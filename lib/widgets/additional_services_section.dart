@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AdditionalServicesSection extends StatelessWidget {
   const AdditionalServicesSection({super.key});
@@ -35,80 +36,103 @@ class AdditionalServicesSection extends StatelessWidget {
   );
 
   Widget _buildServiceCard() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      width: 254,
-      height: 349,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-            child: Image(
-              image: AssetImage('assets/images/hero.jpg'),
-              width: 254,
-              height: 164,
-              fit: BoxFit.fill,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  'Классический расслабляющий массаж',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+    return Material(
+      color: Colors.grey.shade50,
+      borderRadius: BorderRadius.circular(16),
+      clipBehavior: Clip.hardEdge,
+      child: InkWell(
+        onTap: () {},
+        child: SizedBox(
+          width: 254,
+          height: 349,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                child: Image(
+                  image: AssetImage('assets/images/hero.jpg'),
+                  width: 254,
+                  height: 164,
+                  fit: BoxFit.fill,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Идеален для снятия усталости и восстановления энергии',
-                  style: TextStyle(fontSize: 12),
-                ),
-                SizedBox(height: 12),
-                Row(
-                  spacing: 8,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Icon(Icons.access_time, size: 16, color: Colors.orange),
-                    Text('2 часа', style: TextStyle(fontSize: 12)),
+                    SizedBox(height: 12),
+                    Text(
+                      'Классический расслабляющий массаж',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Идеален для снятия усталости и восстановления энергии',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    SizedBox(height: 12),
+                    Row(
+                      spacing: 8,
+                      children: <Widget>[
+                        SvgPicture.asset(
+                          'assets/icons/alarm.svg',
+                          width: 16,
+                          height: 16,
+                        ),
+                        Text('2 часа', style: TextStyle(fontSize: 12)),
+                      ],
+                    ),
+                    SizedBox(height: 12),
                   ],
                 ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              right: 16.0,
-              bottom: 16.0,
-              top: 0,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                const Text(
-                  '5 000 ',
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
-                ),
-                OutlinedButton.icon(
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.orange),
-                    foregroundColor: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      spacing: 4,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          '5 000 ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                          ),
+                        ),
+                        Image.asset(
+                          'assets/icons/gold.png',
+                          width: 16,
+                          height: 16,
+                        ),
+                      ],
                     ),
-                  ),
-                  icon: Icon(Icons.add, color: Colors.orange),
-                  label: const Text('Добавить'),
-                  onPressed: () {},
+                    OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: Colors.orange),
+                        foregroundColor: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      icon: Icon(Icons.add, color: Colors.orange),
+                      label: Text('Добавить'),
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
